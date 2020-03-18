@@ -1,0 +1,23 @@
+---
+
+galaxy_info:
+  role_name: cmake
+  author: Tibor Csóka
+  description: |
+    "Establish cmake build and test tools."
+  company: ""
+
+  license: MIT
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+
+  galaxy_tags:
+    - cmake
+
+dependencies: []

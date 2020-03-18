@@ -1,0 +1,48 @@
+---
+
+- name: establish pre-requisites
+  become: true
+  package:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - gnupg-agent
+      - software-properties-common
+      - wget
+
+- name: check kitware keyring presence
+  package_facts:
+    manager: "auto"
+
+- name: add apt repository key
+  when: "'kitware-archive-keyring' not in ansible_facts.packages"
+  become: true
+  apt_key:
+    id: C1F34CDD40CD72DA
+    url: https://apt.kitware.com/keys/kitware-archive-latest.asc
+    state: present
+
+- name: add apt repository
+  become: true
+  apt_repository:
+    repo: "deb https://apt.kitware.com/ubuntu/ {{ ansible_distribution_release }} main"
+    filename: kitware-cmake
+
+- name: establish kitware keyring
+  when: "'kitware-archive-keyring' not in ansible_facts.packages"
+  become: true
+  package:
+    name: kitware-archive-keyring
+
+- name: establish cmake
+  become: true
+  package:
+    name: cmake
+    state: "{{ cmake_package_state }}"
+
+# - name: remove apt repository key
+#   when: "'kitware-archive-keyring' not in ansible_facts.packages"
+#   become: true
+#   apt_key:
+#     id: C1F34CDD40CD72DA
+#     state: absent
