@@ -14,13 +14,14 @@
   package_facts:
     manager: "auto"
 
-- name: add apt repository key
+- name: add apt repository key    # noqa 303
   when: "'kitware-archive-keyring' not in ansible_facts.packages"
   become: true
-  apt_key:
-    id: C1F34CDD40CD72DA
-    url: https://apt.kitware.com/keys/kitware-archive-latest.asc
-    state: present
+  shell: |
+    set -o pipefail
+    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null    # noqa 204
+  args:
+    executable: /bin/bash
 
 - name: add apt repository
   become: true

@@ -1,7 +1,7 @@
 Ansible role: CMake
 =========
 
-[![Build Status](https://travis-ci.com/Provizanta/ansible-role-cmake.svg?branch=master)](https://travis-ci.com/Provizanta/ansible-role-cmake)
+![Build & Deploy](https://github.com/Provizanta/ansible-role-cmake/workflows/molecule/badge.svg?branch=master)
 
 CMake is a cross-platform family of tools designed to build, test and package software.
 

@@ -8,6 +8,6 @@
       apt:
         update_cache: true
   roles:
-    - role: cmake
+    - role: ansible-role-cmake
       vars:
         cmake_package_state: "latest"
