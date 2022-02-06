@@ -2,6 +2,7 @@
 
 galaxy_info:
   role_name: cmake
+  namespace: provizanta
   author: Tibor Csóka
   description: |
     "Establish cmake build and test tools."
